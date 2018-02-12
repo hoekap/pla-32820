@@ -23,6 +23,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="48dp"
+        android:onClick="show_log"
         android:text="@string/button_showlog"
         android:textAllCaps="false"
         app:layout_constraintEnd_toEndOf="parent"

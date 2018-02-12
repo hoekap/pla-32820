@@ -1,10 +1,13 @@
 package com.myapp.myapplication;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
+
+import static android.provider.AlarmClock.EXTRA_MESSAGE;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -34,6 +37,7 @@ public class MainActivity extends AppCompatActivity {
         }
         TextView target = findViewById(R.id.plusvalue);
         target.setText(String.valueOf(value1+value2));
+        save_log(String.format("%.2f + %.2f = %.2f", value1, value2, value1+value2));
     }
     public void calculate_minus(View view){
         EditText field1 = findViewById(R.id.minus1);
@@ -54,6 +58,7 @@ public class MainActivity extends AppCompatActivity {
         }
         TextView target = findViewById(R.id.minusvalue);
         target.setText(String.valueOf(value1-value2));
+        save_log(String.format("%.2f - %.2f = %.2f", value1, value2, value1-value2));
     }
     public void calculate_product(View view) {
         EditText field1 = findViewById(R.id.product1);
@@ -74,6 +79,7 @@ public class MainActivity extends AppCompatActivity {
         }
         TextView target = findViewById(R.id.productvalue);
         target.setText(String.valueOf(value1*value2));
+        save_log(String.format("%.2f x %.2f = %.2f", value1, value2, value1*value2));
     }
     public void calculate_division(View view) {
         EditText field1 = findViewById(R.id.division1);
@@ -95,9 +101,11 @@ public class MainActivity extends AppCompatActivity {
         TextView target = findViewById(R.id.divisionvalue);
         if (value2 == 0){
             target.setText("NaN");
+            save_log(String.format("%.2f / %.2f = NaN", value1, value2));
         }
         else {
             target.setText(String.format("%.2f", (value1/value2)));
+            save_log(String.format("%.2f / %.2f = %.2f", value1, value2, (value1/value2)));
         }
     }
     public void clear_all(View view){
@@ -121,5 +129,18 @@ public class MainActivity extends AppCompatActivity {
         for (int i = 0; i < results.length; ++i){
             results[i].setText("0");
         }
+    }
+
+    private String log_ = "";
+
+    private void save_log(String str){
+        log_ = str + "\n" + log_;
+        System.out.print(log_);
+    }
+
+    public void show_log(View view) {
+        Intent intent = new Intent(this, LogActivity.class);
+        intent.putExtra("Log", log_);
+        startActivity(intent);
     }
 }
