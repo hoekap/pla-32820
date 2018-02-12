@@ -1,3 +1,12 @@
 <resources>
     <string name="app_name">My Application</string>
+    <string name="hello_text">Hi B O Y E!</string>
+    <string name="button_clear">Tyhjennä kaikki</string>
+    <string name="button_showlog">Näytä logi</string>
+    <string name="plus_operator">+</string>
+    <string name="minus_operator">-</string>
+    <string name="product_operator">x</string>
+    <string name="division_operator">/</string>
+    <string name="count">Laske</string>
+    <string name="result_default">0</string>
 </resources>
